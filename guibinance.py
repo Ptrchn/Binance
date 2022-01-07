@@ -6,13 +6,13 @@ from songline import Sendline
 
 
 
-token = 'IOQEgwL1jjCWSJPjptXEgfCzR5yUSuhXY7mexV9Sg6h'
+token = '--------'
 messenger = Sendline(token)
 
 line_condition = True
 
-api_key = 'U2oEKPN80TZzfj2Ux3r8IAso38d1doIphEfNHD3posHmyfU9QnlKanuyw0bfuwv3'
-api_secret = 'NUmZg49L6pEzxcvI7OKmFUt2qedInfqm8IcvGzIosqGPAn3c0lE7hxqk4MNtt9y3'
+api_key = '_______your api_______'
+api_secret = '_______your api_______'
 client = Client(api_key, api_secret)
 mycoin1 = ['BTCBUSD']
 namecoin1 = ['BTC']
