@@ -128,7 +128,7 @@ def CheckPrice():
                          #print('เหรียญ: {} ราคา: {:,.8f} บาท'.format(sym,cal))
                          #print('ราคา USD: {}'.format(pc))
                          text = '{} ราคา : {:,.2f} บาท'.format(n,cal)
-                         alltext += text + '\n'
+                         alltext += text# + '\n'
                          if line_condition == True:
                                if c in condition:
                                     checktext = CheckCondition(c,cal)
@@ -158,11 +158,9 @@ def CheckCoin():
      COINUSDT = COIN + 'USDT'
      Tcoin = [COINUSDT]
 
-#     Tcoin = COINUSDT.text
 
      prices = client.get_all_tickers()
 
-     alltext2 = ''
 
      for p in prices:
           for c in Tcoin:
@@ -175,7 +173,42 @@ def CheckCoin():
                  print('เหรียญ: {} ราคา: {:,.2f} บาท'.format(N,cal))
                  text2 = 'เหรียญ {} ราคา {:,.2f} บาท'.format(N,cal)
                 
+                
      v2_result.set(text2)
+
+
+
+def SendLine():
+    coin = Box.get()
+    COIN = coin.upper()
+    COINUSDT = COIN + 'USDT'
+    Tcoin = [COINUSDT]
+
+    prices = client.get_all_tickers()
+
+   
+
+    for p in prices:
+          for c in Tcoin:
+             sym = c
+             if p['symbol'] == sym:
+                 pc = float(p['price'])
+                 rate = 33.20
+                 cal = pc*rate
+                 N = COIN
+                 print('เหรียญ: {} ราคา: {:,.2f} บาท'.format(N,cal))
+                 text2 = 'เหรียญ {} ราคา {:,.2f} บาท'.format(N,cal)
+                
+
+    v2_result.set(text2)
+    messenger.sendtext(text3)
+    
+                
+   
+
+
+
+
                 
     
 
@@ -187,16 +220,13 @@ from tkinter import *
 from tkinter import ttk
 
 GUI = Tk()
-GUI.geometry('500x500')
+GUI.geometry('400x600')
 GUI.title('โปรแกรมเช็คราคาจาก Binance')
 
 FONT1 = ('Angsana New' , 25)
 
 L1 = ttk.Label(text='ราคา Binance ล่าสุด',font=FONT1)
 L1.pack()
-
-#B1 = ttk.Button(GUI,text='Check!',command=CheckaPrice)
-#B1.pack(ipadx=20,ipady=10)
 
 v_result = StringVar()
 v_result.set('------------------------')
@@ -206,18 +236,29 @@ R1.pack()
 CheckPrice()
 
 L1 = ttk.Label(text='ราคาเหรียญที่ต้องการ',font=FONT1)
-L1.pack()
+L1.pack(ipady=20)
 
 Box = ttk.Entry(GUI)
 Box.pack(ipadx = 60,ipady = 10)
 
+L2 =  ttk.Label()
+L2.pack(ipady=2)
+
 B2 = ttk.Button(GUI,text='Check!',command=CheckCoin)
 B2.pack(ipadx=20,ipady=10)
+
+L3 =  ttk.Label()
+L3.pack(ipady=1)
+
+B3 = ttk.Button(GUI,text='SendLine',command= SendLine)
+B3.pack(ipadx=20,ipady=10)
 
 v2_result = StringVar()
 v2_result.set('------------------------')
 R2 = ttk.Label(textvariable =v2_result,font=FONT1)
 R2.pack()
+
+
 
 GUI .mainloop()
 
