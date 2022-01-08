@@ -47,9 +47,6 @@ def CheckCondition(coin,price):
         
     return text
 
-
-
-
 current_text = ''
 
 
@@ -135,10 +132,7 @@ def CheckPrice():
                                     if len(checktext) > 0:
                                           text_line += checktext
 
-
-            
-                                    
-                                
+                     
                                 
         if line_condition == True and current_text != text_line:
             print('Condition: ',text_line)
@@ -202,17 +196,7 @@ def SendLine():
 
     v2_result.set(text2)
     messenger.sendtext(text3)
-    
                 
-   
-
-
-
-
-                
-    
-
-                  
                 
 ##############################GUI####################################
 
